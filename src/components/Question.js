@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from 'react';
+import Proptypes from 'prop-types';
 import Error from './Error';
 
-const Question = ({ saveBudget, saveRemaining }) => {
+const Question = ({ saveBudget, saveRemaining, updateQuestion }) => {
 
     // Defining state
     const [ qty, saveQty ] = useState(0);
@@ -26,6 +27,7 @@ const Question = ({ saveBudget, saveRemaining }) => {
         saveErr(false);
         saveBudget(qty);
         saveRemaining(qty);
+        updateQuestion(false);
     }
 
     return (
@@ -53,5 +55,11 @@ const Question = ({ saveBudget, saveRemaining }) => {
         </Fragment>
       );
 }
- 
+
+Question.propTypes = {
+    saveBudget: Proptypes.func.isRequired,
+    saveRemaining: Proptypes.func.isRequired,
+    updateQuestion: Proptypes.func.isRequired
+}
+
 export default Question;
